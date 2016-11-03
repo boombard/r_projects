@@ -1,0 +1,68 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(SC3)
+library(scater)
+```
+
+```{r}
+scater_gui(sceset)
+```
+
+```{r}
+plot(sceset)
+```
+
+```{r}
+plotExpression(sceset, rownames(sceset)[1:6])
+```
+
+```{r}
+is_exprs(sceset) <- exprs(sceset) > 1
+sceset <- calculateQCMetrics(sceset, feature_controls=1:20)
+```
+
+```{r}
+varLabels(sceset)
+```
+```{r}
+plotQC(sceset, type="highest-expression", exprs_values = "tpm")
+```
+
+```{r}
+plotQC(sceset, type="exprs-freq-vs-mean")
+```
+
+```{r}
+plotPCA(sceset)
+```
+
+```{r}
+sceset <- sc3(sceset, exprs_values = 'tpm', ks = 2:4, n.cores = 1)
+```
+
+```{r}
+sc3_plot_consensus(sceset, k = 3)
+```
+
+```{r}
+sc3_plot_silhouette(sceset, k=3)
+```
+
+```{r}
+sc3_plot_cluster_stability(sceset, k = 3)
+```
+```{r}
+sc3_plot_tsne(sceset, k = 3)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
