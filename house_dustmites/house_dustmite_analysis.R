@@ -1,4 +1,5 @@
 library(scater, quietly = TRUE)
+library(dplyr)
 library(SC3)
 library(data.table)
 library(gProfileR)
@@ -9,7 +10,6 @@ library(DESeq2)
 library(limma)
 library(Seurat)
 library(gProfileR)
-source('../r_utilities/utilities.R')
 options(stringsAsFactors = FALSE)
 
 tpm_data <- data.frame(
@@ -26,7 +26,9 @@ symbol_map <- read.table(
   "/Users/ge2/data/annotations/human_annotation_map.tsv", 
   header = TRUE, sep = '\t')
 
-# tpm_data <- replace_ensembl_gene(tpm_data, symbol_map, axis = 1)
+source('../r_utilities/utilities.R')
+
+tpm_data <- replace_ensembl_gene(tpm_data, symbol_map, axis = 2, drop_duplicates = T)
 
 # Merge the qc and metadata files
 annotation_df <- merge(metadata, qc, by = 0, all.x = TRUE, sort = TRUE)
@@ -190,17 +192,33 @@ log_expression <- log10(t(sc_qc[endog_genes, ]@assayData$tpm + 1))
 plotGeneDispersion(t(log_expression))
 
 # Use Seurat to find highly variable genes
-pbmc <- new("seurat", raw.data = t(log_expression))
+pbmc <- new("seurat", raw.data = exprs(sc_qc[endog_genes, ]))
 # pbmc <- Setup(pbmc, min.cells = 3, min.genes = 1600, do.logNormalize = F, total.expr = 1e4, project = "house_dustmite")
-pbmc <- Setup(pbmc, do.logNormalize = F, project = "house_dustmite")
+pbmc <- Setup(pbmc, do.logNormalize = T, project = "house_dustmite")
 pbmc <- MeanVarPlot(pbmc,
                     fxn.x = expMean,
                     fxn.y = logVarDivMean,
                     x.low.cutoff = 0.015,
-                    x.high.cutoff = 2.5,
                     y.cutoff = 0.5,
                     do.contour = F)
 length(pbmc@var.genes)
+
+pbmc <- PCA(pbmc, pc.genes = pbmc@var.genes)
+VizPCA(pbmc, 1:2)
+PCAPlot(pbmc, 1, 2)
+PCHeatmap(pbmc, pc.use = 3, do.balances = T)
+PCHeatmap(pbmc, pc.use = 1:15, cells.use = 500, do.balanced = T, label.columns = F, use.full = F)
+# pbmc <- JackStraw(pbmc, num.replicate = 100, do.print = F)
+PCElbowPlot(pbmc, num.pc = 20)
+pbmc <- FindClusters(pbmc, pc.use = 1:15, resolution = 0.6, print.output = 0, save.SNN = T)
+pbmc <- RunTSNE(pbmc, dims.use = 1:15, do.fast = T)
+pmbc.markers <- FindAllMarkers(pbmc, only.pos = T, min.pct = 0.25, thresh.use = 0.25)
+
+pmbc.markers %>% group_by(cluster) %>% top_n(10, avg_diff) -> top10
+
+?PCElbowPlot
+TSNEPlot(pbmc)
+?TSNEPlot
 
 # PCA analysis
 sc_pca <- prcomp(log_expression)
