@@ -4,6 +4,7 @@ library(SC3)
 library(data.table)
 library(gProfileR)
 library(ggplot2)
+library(gplots)
 library(GGally)
 library(M3Drop)
 library(DESeq2)
@@ -25,10 +26,14 @@ mt_genes <- read.csv(
 symbol_map <- read.table(
   "/Users/ge2/data/annotations/human_annotation_map.tsv", 
   header = TRUE, sep = '\t')
+membrane_db <- read.table(
+  "/Users/ge2/data/annotations/plasma_membrane_rvt.csv", header = T, sep = ",")
 
 source('../r_utilities/utilities.R')
 
 tpm_data <- replace_ensembl_gene(tpm_data, symbol_map, axis = 2, drop_duplicates = T)
+gene_names <- colnames(tpm_data)
+membrane_genes <- membrane_db$Gene_ID
 
 # Merge the qc and metadata files
 annotation_df <- merge(metadata, qc, by = 0, all.x = TRUE, sort = TRUE)
@@ -191,34 +196,78 @@ endog_genes <- !fData(sc_qc)$is_feature_control
 log_expression <- log10(t(sc_qc[endog_genes, ]@assayData$tpm + 1))
 plotGeneDispersion(t(log_expression))
 
-# Use Seurat to find highly variable genes
-pbmc <- new("seurat", raw.data = exprs(sc_qc[endog_genes, ]))
-# pbmc <- Setup(pbmc, min.cells = 3, min.genes = 1600, do.logNormalize = F, total.expr = 1e4, project = "house_dustmite")
-pbmc <- Setup(pbmc, do.logNormalize = T, project = "house_dustmite")
-pbmc <- MeanVarPlot(pbmc,
-                    fxn.x = expMean,
-                    fxn.y = logVarDivMean,
-                    x.low.cutoff = 0.015,
-                    y.cutoff = 0.5,
-                    do.contour = F)
-length(pbmc@var.genes)
+cell_type <- phenoData(sc_qc)$cell_type
+tissue <- phenoData(sc_qc)$tissue
 
-pbmc <- PCA(pbmc, pc.genes = pbmc@var.genes)
-VizPCA(pbmc, 1:2)
-PCAPlot(pbmc, 1, 2)
-PCHeatmap(pbmc, pc.use = 3, do.balances = T)
-PCHeatmap(pbmc, pc.use = 1:15, cells.use = 500, do.balanced = T, label.columns = F, use.full = F)
-# pbmc <- JackStraw(pbmc, num.replicate = 100, do.print = F)
-PCElbowPlot(pbmc, num.pc = 20)
-pbmc <- FindClusters(pbmc, pc.use = 1:15, resolution = 0.6, print.output = 0, save.SNN = T)
-pbmc <- RunTSNE(pbmc, dims.use = 1:15, do.fast = T)
-pmbc.markers <- FindAllMarkers(pbmc, only.pos = T, min.pct = 0.25, thresh.use = 0.25)
+seuratFilter <- sc_qc$tissue == "Blister"
+seuratFilter <- logical(length = length(sc_qc$tissue)) == F
 
-pmbc.markers %>% group_by(cluster) %>% top_n(10, avg_diff) -> top10
+results <- runSeurat(
+  exprs(sc_qc[endog_genes, seuratFilter]), 
+  interactive = T, colour_category = cell_type,
+  shape_category = tissue, disp_cutoff = 0.5, pc_use = 15
+)
 
-?PCElbowPlot
-TSNEPlot(pbmc)
-?TSNEPlot
+pdf("plots/tsne_all_cluster.pdf")
+plotLabelledClusters(results$cellsObject@tsne.rot$tSNE_1,
+                     results$cellsObject@tsne.rot$tSNE_2,
+                     results$cellsObject@ident,
+                     colour = pData(sc_qc[endog_genes, seuratFilter])$cell_type,
+                     shape = pData(sc_qc[endog_genes, seuratFilter])$tissue)
+dev.off()
+
+cd_genes <- c("CD4", "CD3G", "CD8A", "CD8B")
+cd45 <- c("PTPRC")
+central_memory <- c("CCR7", "SELL")
+sp_dp_genes <- c("KIT", "IL7R", "PTGDR2", "CCR7", "SELL")
+cytokine <- c("IFNG", "IL2", "IL10", "GZMB")
+b_cell <- c("CD19")
+gene_names[grep("IL13", gene_names)]
+
+FeaturePlot(results$cellsObject, b_cell,
+            cols.use = c("green", "blue"))
+
+seuratDEHeatmap(results$cellsObject, results$clusterMarkers,
+                filename = "plots/cluster_de_heatmap_blood.pdf")
+
+var_membrane_genes <- results$cellsObject@var.genes[
+  results$cellsObject@var.genes %in% membrane_genes]
+length(var_membrane_genes)
+  
+var_membrane_filter <- colnames(log_expression) %in% var_membrane_genes
+length(var_membrane_filter)
+
+# Get the frequency of the expression within the cells
+membrane_expression <- results$cellsObject@raw.data[var_membrane_genes, ]
+expression_distribution <- rowSums(membrane_expression > 0)
+frequent_membrane_genes <- names(expression_distribution > 20)
+
+heatmap(t(log_expression[, var_membrane_filter]))
+source('../r_utilities/utilities.R')
+
+cells_ident <- factor(results$cellsObject@ident)
+table(cells_ident)
+cells_use <- results$cellsObject@cell.names[order(cells_ident)]
+colsep_use <- cumsum(table(cells_ident))
+col_lab <- rep("", length(cells_use))
+col_lab[round(colsep_use - table(cells_ident) / 2) + 1] = levels(cells_ident)
+cex_col <- 0.2 + 1/log10(length(unique(cells_ident)))
+
+pdf("plots/membrane_gene_cluster_heatmap.pdf", width = 10, height = 25)
+heatmap.2(
+  minmax(results$cellsObject@scale.data[frequent_membrane_genes, ],
+         min = -2.5, max = 2.5),
+  Rowv = T,
+  Colv = NA,
+  trace = "none",
+  colsep = colsep_use,
+  labCol = col_lab,
+  cexCol = cex_col,
+  dendrogram = "row",
+  col = pyCols,
+  keysize = 0.5,
+  key.title = NA)
+dev.off()
 
 # PCA analysis
 sc_pca <- prcomp(log_expression)
