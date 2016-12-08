@@ -1,3 +1,7 @@
 house_dustmites/data/salmon_qc.csv filter=lfs diff=lfs merge=lfs -text
 house_dustmites/data/technical_metadata.csv filter=lfs diff=lfs merge=lfs -text
 house_dustmites/data/tpm_t.csv filter=lfs diff=lfs merge=lfs -text
+annotations/cell_cycle_genes.tsv filter=lfs diff=lfs merge=lfs -text
+annotations/human_annotation_map.tsv filter=lfs diff=lfs merge=lfs -text
+annotations/human_mt_genes.tsv filter=lfs diff=lfs merge=lfs -text
+annotations/plasma_membrane_rvt.csv filter=lfs diff=lfs merge=lfs -text
