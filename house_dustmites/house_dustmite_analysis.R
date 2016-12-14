@@ -192,6 +192,12 @@ write.table(quality_summary, file = "/Users/ge2/Desktop/quality_pass.csv", sep =
 sc_qc <- sceset[fData(sceset)$use, pData(sceset)$use]
 endog_genes <- !fData(sc_qc)$is_feature_control
 
+# File lists for scater etc.
+write.table(
+  pData(sc_qc)[pData(sc_qc)$sample_type == "HDM Blister g/d T cells", "Row.names"],
+  "data/qc_blister_gd_files.csv", sep = ",", 
+  quote = F, col.names= F, row.names = F)
+
 # First, log Transform
 log_expression <- log10(t(sc_qc[endog_genes, ]@assayData$tpm + 1))
 plotGeneDispersion(t(log_expression))
