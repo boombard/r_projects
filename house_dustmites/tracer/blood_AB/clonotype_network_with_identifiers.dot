@@ -1,0 +1,8 @@
+graph "" {
+"20957_4#368" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#368</B></FONT><BR/><FONT COLOR = "#377eb8">TRBV19_TAGTAACCAGGGGGCGTCCACTG_TRBJ1-1</FONT><BR/><FONT COLOR = "#377eb8">TRBV14_CAAGATGGGGGATATCGCGAAAA_TRBJ1-4</FONT>>, shape=box, style=filled];
+"20957_4#370" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#370</B></FONT><BR/><FONT COLOR = "#377eb8">TRBV14_CAAGATGGGGGATATCGCGAAAA_TRBJ1-4</FONT>>, shape=box, style=filled];
+"20957_4#366" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#366</B></FONT><BR/><FONT COLOR = "#377eb8">TRBV5-6_CAGCTCGCAATTCGGCAGGGATAGTCAGC_TRBJ1-5</FONT>>, shape=box, style=filled];
+"20957_4#364" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#364</B></FONT><BR/><FONT COLOR = "#e41a1c">TRAV13-1_AGCAATTCTATACAAT_TRAJ43</FONT><BR/><FONT COLOR = "#377eb8">TRBV20-1_GTGCTCCCCGACCCTTAAGGGGG(C)AAGAG_TRBJ2-5</FONT><BR/><FONT COLOR = "#377eb8">TRBV5-6_CAGCTCGCAATTCGGCAGGGATAGTCAGC_TRBJ1-5</FONT>>, shape=box, style=filled];
+"20957_4#368" -- "20957_4#370"  [color="#377eb8", key=B, penwidth=2, weight=1];
+"20957_4#366" -- "20957_4#364"  [color="#377eb8", key=B, penwidth=2, weight=1];
+}

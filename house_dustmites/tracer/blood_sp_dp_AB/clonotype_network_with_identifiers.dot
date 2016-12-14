@@ -1,0 +1,7 @@
+graph "" {
+"20956_5#318" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20956_5#318</B></FONT><BR/><FONT COLOR = "#e41a1c">TRAV12-2_GAACAAGCGTGGA_TRAJ53</FONT><BR/><FONT COLOR = "#e41a1c">TRAV21_CTGTGGTAATT_TRAJ54</FONT>>, shape=box, style=filled];
+"20956_5#230" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20956_5#230</B></FONT><BR/><FONT COLOR = "#e41a1c">TRAV12-2_GAACAAGCGTGGA_TRAJ53</FONT><BR/><FONT COLOR = "#e41a1c">TRAV8-2_GTGAGCGGTGG_TRAJ4</FONT><BR/><FONT COLOR = "#377eb8">TRBV5-1_CTTGGACCAGGGGG(C)TGGGG_TRBJ2-6</FONT>>, shape=box, style=filled];
+"20956_5#28" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20956_5#28</B></FONT><BR/><FONT COLOR = "#e41a1c">TRAV21_CTGTGGTAATT_TRAJ54</FONT>>, shape=box, style=filled];
+"20956_5#318" -- "20956_5#230"  [color="#e41a1c", key=A, penwidth=2, weight=1];
+"20956_5#318" -- "20956_5#28"  [color="#e41a1c", key=A, penwidth=2, weight=1];
+}

@@ -1,0 +1,6 @@
+clonotype_size	clonotype_count
+1	84
+2	0
+3	1
+4	0
+5	0

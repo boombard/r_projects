@@ -1,0 +1,36 @@
+TCR_A reconstruction:	54 / 97 (55.7%)
+TCR_B reconstruction:	64 / 97 (66.0%)
+
+AB productive reconstruction:	40 / 97 (41.2%)
+
++--------+----------------+---------------+----------------+
+|        | 0 recombinants | 1 recombinant | 2 recombinants |
++--------+----------------+---------------+----------------+
+| all A  | 36             | 42 (69%)      | 19 (31%)       |
+| all B  | 30             | 50 (75%)      | 17 (25%)       |
+| prod A | 43             | 50 (93%)      | 4 (7%)         |
+| prod B | 33             | 57 (89%)      | 7 (11%)        |
++--------+----------------+---------------+----------------+
+
+#MAIT cells#
+Expected: TRAV1-2-TRAJ33,TRBV13-* | TRBV19-*
+Found 2 possible cells.
+
+### 20957_4#230 ###
+TCR_A: {'TRAV1-2_TGCTGCTTCCGATAG_TRAJ33'}
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+### 20957_4#30 ###
+TCR_A: {'TRAV1-2_TGCTGCTTCCGATAG_TRAJ33'}
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+
+
+#Clonotype groups#
+This is a text representation of the groups shown in clonotype_network_with_identifiers.pdf.
+It does not exclude cells that only share beta and not alpha.
+
+20957_4#368, 20957_4#370
+
+20957_4#366, 20957_4#364
+
