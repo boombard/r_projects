@@ -227,7 +227,7 @@ cd45 <- c("PTPRC")
 central_memory <- c("CCR7", "SELL")
 sp_dp_genes <- c("KIT", "IL7R", "PTGDR2", "CCR7", "SELL")
 cytokine <- c("IFNG", "IL2", "IL10", "GZMB")
-b_cell <- c("CD19")
+b_cell <- c("CD19", "CD20")
 gene_names[grep("IL13", gene_names)]
 
 FeaturePlot(results$cellsObject, b_cell,

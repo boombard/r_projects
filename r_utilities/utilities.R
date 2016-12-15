@@ -115,8 +115,10 @@ runSeurat <- function(raw_data, disp_cutoff = 0.5, pc_use = 20,
 }
 
 plotLabelledClusters <- function(xData, yData,
-                                 clusterData, colour = NULL, shape = NULL) {
+                                 clusterData, colour = NULL, shape = NULL,
+                                 xLabel = NULL, yLabel = NULL, title = NULL) {
   plotData <- data.frame(xData, yData, clusterData)
+  
   centers <- plotData %>% group_by(clusterData) %>% 
     summarise(x = median(xData),  y = median(yData))
   centers <- data.frame(centers)
@@ -124,19 +126,27 @@ plotLabelledClusters <- function(xData, yData,
   if (is.null(colour)) {
     colour <- clusterData
   }
-  print(length(colour))
-  print(length(shape))
-  print(length(plotData))
   
   # pData()[rownames(pData(sc_qc)) %in% attributes(pbmc@ident[pbmc@ident == 1])$names, "tissue"]
   
   # pdf("plots/variable_genes_tsne.pdf")
+
   p <- ggplot(data = data.frame(xData, yData), aes(x = xData, y = yData)) +
        geom_point(aes(colour = colour, shape = shape))
   p2 <- p + 
         geom_point(data = centers, aes(x = x, y = y), size = 0, alpha = 0) +
         geom_text(data = centers, aes(x = x, y = y, label=clusterData), 
                   size = 8, fontface = "bold", alpha = 0.6)
+  if (!is.null(xLabel)) {
+    p2 <- p2 + xlab(xLabel)
+  }
+  if (!is.null(yLabel)) {
+    p2 <- p2 + ylab(yLabel)
+  }
+  if (!is.null(title)) {
+    p2 <- p2 + ggtitle(title)
+  }
+  
   print(p2)
 }
 

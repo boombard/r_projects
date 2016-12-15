@@ -1,11 +1,14 @@
 library(Seurat)
+library(dplyr)
+library(gplots)
 source('../r_utilities/utilities.R')
 
 rm(list=ls())
 load('preprocessed.RData')
+load('seurat_analysis.R')
 
 membrane_genes <- membrane_db$Gene_ID
-cellFilter <- pData(sc_qc)$tissue == "Blister"
+# cellFilter <- pData(sc_qc)$tissue == "Blister"
 
 cellFilter <- logical(length=dim(pData(sc_qc))[1]) == F
 
@@ -24,7 +27,7 @@ pbmc <- MeanVarPlot(pbmc,
 print(paste0("Variable genes detected: ", length(pbmc@var.genes)))
 
 pbmc <- PCA(pbmc, pc.genes = pbmc@var.genes)
-# VizPCA(pbmc, 1:2)
+VizPCA(pbmc, 1:2)
 # PCAPlot(pbmc, 1, 2)
 
 PCElbowPlot(pbmc, num.pc = 20)
@@ -33,26 +36,54 @@ pc_use = 15
 
 # PCHeatmap(pbmc, pc.use = 1:15, cells.use = 500, do.balanced = T, label.columns = F, use.full = F)
 # pbmc <- JackStraw(pbmc, num.replicate = 100, do.print = F)
-pbmc <- FindClusters(pbmc, pc.use = 1:pc_use, resolution = 1., print.output = 0, save.SNN = T)
+pbmc <- FindClusters(pbmc, pc.use = 1:pc_use, resolution = 0.8, print.output = 0, save.SNN = T)
 pbmc <- RunTSNE(pbmc, dims.use = 1:pc_use, do.fast = T, perplexity = 30)
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = T, min.pct = 0.25, thresh.use = 0.25)
 
+?FindAllMarkers
+
+write.table(pbmc.markers, file = "data/cluster_markers.csv", sep = ",",
+            quote = F)
+
 pbmc.markers %>% group_by(cluster) %>% top_n(20, avg_diff) -> top20
 
-# pdf("plots/seurat_cluster_heatmap.pdf", width = 10, height = 15)
-dev.new()
+pdf("plots/seurat_cluster_heatmap.pdf", width = 10, height = 15)
 DoHeatmap(pbmc, genes.use = top20$gene, order.by.ident = T, slim.col.label = T, remove.key = T)
-# dev.off()
+dev.off()
 
 dev.new()
+pdf("plots/tsne_cluster_labelled.pdf", width = 10, height = 10)
 TSNEPlot(pbmc)
+dev.off()
 
 dev.new()
+# tSNE
+
+pdf("plots/tsne_sorting_labelled.pdf", width = 10, height = 10)
 plotLabelledClusters(pbmc@tsne.rot$tSNE_1,
                      pbmc@tsne.rot$tSNE_2,
                      pbmc@ident,
                      colour = pData(sc_qc)$cell_type,
-                     shape = pData(sc_qc)$tissue)
+                     shape = pData(sc_qc)$tissue,
+                     xLabel = "Dimension 1",
+                     yLabel = "Dimension 2",
+                     title = "tSNE")
+dev.off()
+
+source('../r_utilities/utilities.R')
+
+pdf("plots/pca_3_4.pdf", width = 10, height = 10)
+plotLabelledClusters(pbmc@pca.rot$PC3,
+                     pbmc@pca.rot$PC4,
+                     pbmc@ident,
+                     colour = pData(sc_qc)$cell_type,
+                     shape = pData(sc_qc)$tissue,
+                     xLabel = "PC3",
+                     yLabel = "PC4",
+                     title = "PCA")
+dev.off()
+
+
 
 # tsne_seurat <- pbmc@tsne.rot
 # tsne_seurat$ident <- pbmc@ident
@@ -71,6 +102,7 @@ plotLabelledClusters(pbmc@tsne.rot$tSNE_1,
 # pdf("plots/tsne_all_cluster.pdf")
 
 # dev.off()
+gene_names <- rownames(exprs(sc_qc))
 
 cd_genes <- c("CD4", "CD3G", "CD8A", "CD8B")
 cd45 <- c("PTPRC")
@@ -78,10 +110,14 @@ central_memory <- c("CCR7", "SELL")
 sp_dp_genes <- c("KIT", "IL7R", "PTGDR2", "CCR7", "SELL")
 cytokine <- c("IFNG", "IL2", "IL10", "GZMB")
 b_cell <- c("CD19")
-gene_names[grep("IL13", gene_names)]
 
-FeaturePlot(pbmc, cd45,
+gene_names[grep("CD20", gene_names)]
+
+pdf("plots/cytokines_tsne_project.pdf", width = 10, height = 10)
+FeaturePlot(pbmc, cytokine,
             cols.use = c("green", "blue"))
+dev.off()
+
 
 # seuratDEHeatmap(pbmc, pbmc.markers,
 #                 filename = "plots/cluster_de_heatmap_blood.pdf")
@@ -112,8 +148,7 @@ col_lab <- rep("", length(cells_use))
 col_lab[round(colsep_use - table(cells_ident) / 2) + 1] = levels(cells_ident)
 cex_col <- 0.2 + 1/log10(length(unique(cells_ident)))
 
-# pdf("plots/membrane_gene_cluster_heatmap.pdf", width = 10, height = 25)
-dev.new()
+pdf("plots/membrane_gene_cluster_heatmap.pdf", width = 10, height = 25)
 heatmap.2(
   minmax(pbmc@scale.data[frequent_membrane_genes, ],
          min = -2.5, max = 2.5),
@@ -127,4 +162,6 @@ heatmap.2(
   col = pyCols,
   keysize = 0.5,
   key.title = NA)
-# dev.off()
+dev.off()
+
+save(pbmc, pbmc.markers, top20, var_membrane_genes, file = "seurat_data.RData")
