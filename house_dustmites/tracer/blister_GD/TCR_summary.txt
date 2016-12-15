@@ -1,0 +1,27 @@
+TCR_G reconstruction:	3 / 51 (5.9%)
+TCR_D reconstruction:	2 / 51 (3.9%)
+
+GD productive reconstruction:	1 / 51 (2.0%)
+
++--------+----------------+---------------+----------------+
+|        | 0 recombinants | 1 recombinant | 2 recombinants |
++--------+----------------+---------------+----------------+
+| all G  | 42             | 8 (89%)       | 1 (11%)        |
+| all D  | 47             | 4 (100%)      | 0 (0%)         |
+| prod G | 48             | 3 (100%)      | 0 (0%)         |
+| prod D | 49             | 2 (100%)      | 0 (0%)         |
++--------+----------------+---------------+----------------+
+
+
+#Cells with more than two recombinants for a locus#
+None
+
+
+#Clonotype groups#
+This is a text representation of the groups shown in clonotype_network_with_identifiers.pdf.
+It does not exclude cells that only share beta and not alpha.
+
+20957_4#109, 20957_4#113
+
+20957_4#245, 20957_4#293, 20957_4#195
+

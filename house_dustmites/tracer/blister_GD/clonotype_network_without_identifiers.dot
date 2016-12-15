@@ -1,0 +1,15 @@
+graph "" {
+"20957_4#155" [fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr></table>>, sep="0.4", shape=circle];
+"20957_4#109" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr></table>>, sep="0.4", shape=circle, style=filled];
+"20957_4#67" [fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#4daf4a"></td></tr><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr><tr><td height="10" width="40" bgcolor="#984ea3"></td></tr></table>>, sep="0.4", shape=circle];
+"20957_4#195" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr></table>>, sep="0.4", shape=circle, style=filled];
+"20957_4#113" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr></table>>, sep="0.4", shape=circle, style=filled];
+"20957_4#165" [fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr></table>>, sep="0.4", shape=circle];
+"20957_4#207" [fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#4daf4a"></td></tr></table>>, sep="0.4", shape=circle];
+"20957_4#293" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#a4e4a2"></td></tr><tr><td height="10" width="40" bgcolor="#cd9dd4"></td></tr></table>>, sep="0.4", shape=circle, style=filled];
+"20957_4#245" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#4daf4a"></td></tr><tr><td height="10" width="40" bgcolor="#cd9dd4"></td></tr></table>>, sep="0.4", shape=circle, style=filled];
+"20957_4#199" [fontname="helvetica neue", label=<<table cellspacing="6px" border="0" cellborder="0"><tr><td height="10" width="40" bgcolor="#984ea3"></td></tr></table>>, sep="0.4", shape=circle];
+"20957_4#109" -- "20957_4#113"  [color="#4daf4a", key=G, penwidth=2, weight=1];
+"20957_4#195" -- "20957_4#293"  [color="#4daf4a", key=G, penwidth=2, weight=1];
+"20957_4#293" -- "20957_4#245"  [color="#984ea3", key=D, penwidth=2, weight=1];
+}

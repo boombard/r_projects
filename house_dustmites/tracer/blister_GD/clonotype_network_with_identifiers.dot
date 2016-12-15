@@ -1,0 +1,10 @@
+graph "" {
+"20957_4#109" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#109</B></FONT><BR/><FONT COLOR = "#a4e4a2">TRGV10_GTGGGCCAAGGGAATGGTT_TRGJP1</FONT>>, shape=box, style=filled];
+"20957_4#195" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#195</B></FONT><BR/><FONT COLOR = "#a4e4a2">TRGV3_CTGGGCCGGAATT_TRGJ2</FONT>>, shape=box, style=filled];
+"20957_4#113" [fillcolor="#8dd3c720", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#113</B></FONT><BR/><FONT COLOR = "#a4e4a2">TRGV10_GTGGGCCAAGGGAATGGTT_TRGJP1</FONT>>, shape=box, style=filled];
+"20957_4#293" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#293</B></FONT><BR/><FONT COLOR = "#a4e4a2">TRGV3_CTGGGCCGGAATT_TRGJ2</FONT><BR/><FONT COLOR = "#cd9dd4">TRDV1_GAACTGGGGTTCCTAACGGGGGATACAAAGAGGGTACACC_TRDJ1</FONT>>, shape=box, style=filled];
+"20957_4#245" [fillcolor="#ffffb320", fontname="helvetica neue", label=<<FONT POINT-SIZE="16"><B>20957_4#245</B></FONT><BR/><FONT COLOR = "#4daf4a">TRGV2_GACGGAACCCTTTATT_TRGJ1</FONT><BR/><FONT COLOR = "#cd9dd4">TRDV1_GAACTGGGGTTCCTAACGGGGGATACAAAGAGGGTACACC_TRDJ1</FONT>>, shape=box, style=filled];
+"20957_4#109" -- "20957_4#113"  [color="#4daf4a", key=G, penwidth=2, weight=1];
+"20957_4#195" -- "20957_4#293"  [color="#4daf4a", key=G, penwidth=2, weight=1];
+"20957_4#293" -- "20957_4#245"  [color="#984ea3", key=D, penwidth=2, weight=1];
+}

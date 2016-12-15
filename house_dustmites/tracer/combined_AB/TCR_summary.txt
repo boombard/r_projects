@@ -1,0 +1,96 @@
+TCR_A reconstruction:	168 / 233 (72.1%)
+TCR_B reconstruction:	187 / 233 (80.3%)
+
+AB productive reconstruction:	144 / 233 (61.8%)
+
++--------+----------------+---------------+----------------+----------------+----------------+
+|        | 0 recombinants | 1 recombinant | 2 recombinants | 3 recombinants | 4 recombinants |
++--------+----------------+---------------+----------------+----------------+----------------+
+| all A  | 57             | 107 (61%)     | 64 (36%)       | 4 (2%)         | 1 (1%)         |
+| all B  | 43             | 154 (81%)     | 33 (17%)       | 2 (1%)         | 1 (1%)         |
+| prod A | 65             | 141 (84%)     | 26 (15%)       | 1 (1%)         | 0 (0%)         |
+| prod B | 46             | 174 (93%)     | 11 (6%)        | 1 (1%)         | 1 (1%)         |
++--------+----------------+---------------+----------------+----------------+----------------+
+
+
+#Cells with more than two recombinants for a locus#
+###20957_4#268###
+TCR_A:	3
+TCR_B:	2
+
+###20957_4#28###
+TCR_A:	4
+TCR_B:	4
+
+###20957_3#145###
+TCR_A:	3
+TCR_B:	1
+
+###20957_3#288###
+TCR_A:	1
+TCR_B:	3
+
+###20957_4#196###
+TCR_A:	1
+TCR_B:	3
+
+###20957_4#220###
+TCR_A:	3
+TCR_B:	1
+
+###20957_4#230###
+TCR_A:	3
+TCR_B:	0
+
+
+#MAIT cells#
+Expected: TRAV1-2-TRAJ33,TRBV13-* | TRBV19-*
+Found 3 possible cells.
+
+### 20957_4#106 ###
+TCR_A: {'TRAV1-2_TGTGCCGCCGGGGATA_TRAJ33'}
+TCR_B: Invariant recombinant not found for TCR_B. 1 found in total ({'TRBV9_CGTAGCTGCGTCAGCGTCTGAAGGGGA_TRBJ2-2'})
+TCR_B: Invariant recombinant not found for TCR_B. 1 found in total ({'TRBV9_CGTAGCTGCGTCAGCGTCTGAAGGGGA_TRBJ2-2'})
+TCR_B: Invariant recombinant not found for TCR_B. 1 found in total ({'TRBV9_CGTAGCTGCGTCAGCGTCTGAAGGGGA_TRBJ2-2'})
+### 20957_4#230 ###
+TCR_A: {'TRAV1-2_TGTTGCTTCCGATAG_TRAJ33', 'TRAV1-2_TGCTGCTTCCGATAG_TRAJ33'}
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+### 20957_4#30 ###
+TCR_A: {'TRAV1-2_TGCTGCTTCCGATAG_TRAJ33'}
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+TCR_B: Invariant recombinant not found for TCR_B. 0 found in total (set())
+
+
+#Clonotype groups#
+This is a text representation of the groups shown in clonotype_network_with_identifiers.pdf.
+It does not exclude cells that only share beta and not alpha.
+
+20957_4#370, 20957_4#368
+
+20957_3#320, 20957_3#289, 20957_3#288, 20957_3#263
+
+20957_4#96, 20957_4#72
+
+20957_4#366, 20957_4#364
+
+20957_4#116, 20957_4#258, 20957_3#311, 20957_3#245, 20957_3#7, 20957_3#151, 20957_3#153
+
+20957_4#268, 20957_4#292
+
+20957_4#122, 20957_4#148
+
+20957_3#69, 20957_4#208
+
+20957_4#12, 20957_4#114
+
+20957_4#52, 20957_4#28
+
+20957_4#110, 20957_4#128
+
+20957_4#202, 20957_3#257
+
+20957_4#244, 20957_4#220
+

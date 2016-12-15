@@ -1,0 +1,68 @@
+cell_name	locus	recombinant_id	productive	reconstructed_length
+20957_4#109	G	TRGV10_GTGGGCCAAGGGAATGGTT_TRGJP1	False	362
+
+20957_4#113	G	TRGV10_GTGGGCCAAGGGAATGGTT_TRGJP1	False	362
+
+20957_4#155	G	TRGV10_GCTGCCGCTGTATACC_TRGJP1	False	365
+
+20957_4#165	G	TRGV10_GGGATATTTTATT_TRGJ1	False	354
+
+20957_4#195	G	TRGV3_CTGGGCCGGAATT_TRGJ2	False	238
+
+20957_4#199	D	TRDV2_GACAC(C)TGGGGGACCACCG_TRDJ1	True	236
+
+20957_4#207	G	TRGV10_TGGGAGACGTATTA_TRGJ1	True	355
+
+20957_4#245	G	TRGV2_GACGGAACCCTTTATT_TRGJ1	True	85
+20957_4#245	D	TRDV1_GAACTGGGGTTCCTAACGGGGGATACAAAGAGGGTACACC_TRDJ1	False	171
+
+20957_4#293	G	TRGV3_CTGGGCCGGAATT_TRGJ2	False	307
+20957_4#293	D	TRDV1_GAACTGGGGTTCCTAACGGGGGATACAAAGAGGGTACACC_TRDJ1	False	311
+
+20957_4#67	G	TRGV9_GGAGGCTCAAGA_TRGJP	True	364
+20957_4#67	G	TRGV10_TGGGACCGGCGAGGAGGGGTATTA_TRGJ1	False	365
+20957_4#67	D	TRDV2_GTGACGAACTACTGGGGGATGTCACCG_TRDJ1	True	352
+
+
+
+20957_4#13	No seqs found for TCR_['G', 'D']
+20957_4#49	No seqs found for TCR_['G', 'D']
+20957_4#51	No seqs found for TCR_['G', 'D']
+20957_4#53	No seqs found for TCR_['G', 'D']
+20957_4#59	No seqs found for TCR_['G', 'D']
+20957_4#57	No seqs found for TCR_['G', 'D']
+20957_4#63	No seqs found for TCR_['G', 'D']
+20957_4#65	No seqs found for TCR_['G', 'D']
+20957_4#97	No seqs found for TCR_['G', 'D']
+20957_4#101	No seqs found for TCR_['G', 'D']
+20957_4#103	No seqs found for TCR_['G', 'D']
+20957_4#107	No seqs found for TCR_['G', 'D']
+20957_4#111	No seqs found for TCR_['G', 'D']
+20957_4#115	No seqs found for TCR_['G', 'D']
+20957_4#117	No seqs found for TCR_['G', 'D']
+20957_4#119	No seqs found for TCR_['G', 'D']
+20957_4#147	No seqs found for TCR_['G', 'D']
+20957_4#149	No seqs found for TCR_['G', 'D']
+20957_4#151	No seqs found for TCR_['G', 'D']
+20957_4#153	No seqs found for TCR_['G', 'D']
+20957_4#159	No seqs found for TCR_['G', 'D']
+20957_4#157	No seqs found for TCR_['G', 'D']
+20957_4#197	No seqs found for TCR_['G', 'D']
+20957_4#167	No seqs found for TCR_['G', 'D']
+20957_4#201	No seqs found for TCR_['G', 'D']
+20957_4#203	No seqs found for TCR_['G', 'D']
+20957_4#205	No seqs found for TCR_['G', 'D']
+20957_4#209	No seqs found for TCR_['G', 'D']
+20957_4#211	No seqs found for TCR_['G', 'D']
+20957_4#213	No seqs found for TCR_['G', 'D']
+20957_4#215	No seqs found for TCR_['G', 'D']
+20957_4#247	No seqs found for TCR_['G', 'D']
+20957_4#249	No seqs found for TCR_['G', 'D']
+20957_4#251	No seqs found for TCR_['G', 'D']
+20957_4#255	No seqs found for TCR_['G', 'D']
+20957_4#257	No seqs found for TCR_['G', 'D']
+20957_4#259	No seqs found for TCR_['G', 'D']
+20957_4#261	No seqs found for TCR_['G', 'D']
+20957_4#263	No seqs found for TCR_['G', 'D']
+20957_4#289	No seqs found for TCR_['G', 'D']
+20957_4#291	No seqs found for TCR_['G', 'D']

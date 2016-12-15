@@ -5,10 +5,13 @@ rm(list=ls())
 load('preprocessed.RData')
 
 membrane_genes <- membrane_db$Gene_ID
+cellFilter <- pData(sc_qc)$tissue == "Blister"
+
+cellFilter <- logical(length=dim(pData(sc_qc))[1]) == F
 
 set.seed(0)
 # Use Seurat to find highly variable genes
-pbmc <- new("seurat", raw.data = exprs(sc_qc[endog_genes, ]))
+pbmc <- new("seurat", raw.data = exprs(sc_qc[endog_genes, cellFilter]))
 # pbmc <- Setup(pbmc, min.cells = 3, min.genes = 1600, do.logNormalize = F, total.expr = 1e4, project = "house_dustmite")
 pbmc <- Setup(pbmc, do.logNormalize = T, project = "house_dustmite")
 
@@ -31,7 +34,7 @@ pc_use = 15
 # PCHeatmap(pbmc, pc.use = 1:15, cells.use = 500, do.balanced = T, label.columns = F, use.full = F)
 # pbmc <- JackStraw(pbmc, num.replicate = 100, do.print = F)
 pbmc <- FindClusters(pbmc, pc.use = 1:pc_use, resolution = 1., print.output = 0, save.SNN = T)
-pbmc <- RunTSNE(pbmc, dims.use = 1:pc_use, do.fast = T, perplexity = 15)
+pbmc <- RunTSNE(pbmc, dims.use = 1:pc_use, do.fast = T, perplexity = 30)
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = T, min.pct = 0.25, thresh.use = 0.25)
 
 pbmc.markers %>% group_by(cluster) %>% top_n(20, avg_diff) -> top20
